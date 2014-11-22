@@ -591,7 +591,7 @@ class Customer(StripeObject):
             currency=currency,
             customer=self.stripe_id,
             description=description,
-            capture=capture,
+#            capture=capture,
         )
         obj = self.record_charge(resp["id"])
         if send_receipt:
@@ -884,6 +884,8 @@ class Charge(StripeObject):
         return obj
 
     def send_receipt(self):
+	#let stripe send receipt
+	return
         if not self.receipt_sent:
             site = Site.objects.get_current()
             protocol = getattr(settings, "DEFAULT_HTTP_PROTOCOL", "http")
